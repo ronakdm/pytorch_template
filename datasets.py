@@ -13,7 +13,7 @@ class MyDataset(Dataset):
         ]
         self.examples = []
         for i in range(n):
-            self.examples.append(distributions[self.labels[i]].sample())
+            self.examples.append(distributions[self.labels[i].item()].sample())
 
     def __len__(self):
         return self.n
