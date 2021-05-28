@@ -6,7 +6,8 @@ from torch.utils.data import Dataset
 class MyDataset(Dataset):
     def __init__(self, n, d):
         self.n = n
-        self.labels = torch.bernoulli(0.5 * torch.ones(n))
+        self.labels = torch.bernoulli(0.5 * torch.ones(n)).int()
+        print(self.labels)
         distributions = [
             torch.distributions.MultivariateNormal(-torch.zeros(d), torch.eye(d)),
             torch.distributions.MultivariateNormal(torch.zeros(d), torch.eye(d)),
