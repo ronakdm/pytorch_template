@@ -6,8 +6,14 @@ from torch.utils.data import Dataset
 class MyDataset(Dataset):
     def __init__(self, n, d):
         self.n = n
-        self.examples = torch.rand(n, d)
-        self.labels = torch.rand(n)
+        self.labels = torch.bernoulli(0.5 * torch.ones(n))
+        distributions = [
+            torch.distributions.MultivariateNormal(-torch.zeros(d), torch.eye(d)),
+            torch.distributions.MultivariateNormal(torch.zeros(d), torch.eye(d)),
+        ]
+        self.examples = []
+        for i in range(n):
+            self.examples.append(distributions[self.labels[i]].sample())
 
     def __len__(self):
         return self.n
