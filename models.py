@@ -8,7 +8,7 @@ class MyModel(nn.Module):
         super(MyModel, self).__init__()
         self.fc1 = nn.Linear(input_dim, hidden_dim)
         self.fc2 = nn.Linear(hidden_dim, output_dim)
-        self.softmax = nn.Softmax(output_dim)
+        self.softmax = nn.Softmax(dim=1)
         pass
 
     def forward(self, x):

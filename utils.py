@@ -71,9 +71,9 @@ def format_time(elapsed):
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
-    pred_flat = np.argmax(preds, axis=1).flatten()
+    pred_flat = torch.argmax(preds, axis=1).flatten()
     labels_flat = labels.flatten()
-    return np.sum(pred_flat == labels_flat) / len(labels_flat)
+    return torch.sum(pred_flat == labels_flat) / len(labels_flat)
 
 
 def train(
@@ -112,9 +112,8 @@ def train(
 
         # Put the model into training mode. Don't be mislead--the call to
         # `train` just changes the *mode*, it doesn't *perform* the training.
-        # `dropout` and `batchnorm` layers behave differently during training
-        # vs. test
-        # (source: https://stackoverflow.com/questions/51433378/what-does-model-train-do-in-pytorch)
+        # `dropout` and `batchnorm` layers behave differently during training vs. test
+        # https://stackoverflow.com/questions/51433378/what-does-model-train-do-in-pytorch)
         model.train()
 
         # For each batch of training data...
