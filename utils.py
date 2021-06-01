@@ -174,7 +174,7 @@ def train(
 
         print("")
         print("  Average training loss: {0:.2f}".format(avg_train_loss))
-        print("  Training epcoh took: {:}".format(training_time))
+        print("  Training epoch took: {:}".format(training_time))
 
         avg_val_loss, avg_val_accuracy, validation_time = evaluate(
             model, validation_dataloader, criterion
